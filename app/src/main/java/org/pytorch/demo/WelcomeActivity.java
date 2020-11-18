@@ -36,15 +36,15 @@ public class WelcomeActivity extends AppCompatActivity {
   private static final PageData[] PAGES = new PageData[] {
       new PageData(
           R.string.welcome_page_title,
-          R.drawable.ic_logo_pytorch,
+          R.drawable.ic_coronavirus,
           R.string.welcome_page_description),
       new PageData(
           R.string.welcome_page_image_classification_title,
-          R.drawable.ic_image_classification_l,
+          R.drawable.ic_masks_white,
           R.string.welcome_page_image_classification_description),
       new PageData(
           R.string.welcome_page_nlp_title,
-          R.drawable.ic_text_classification_l,
+          R.drawable.ic_help,
           R.string.welcome_page_nlp_description)
   };
 

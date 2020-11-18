@@ -10,5 +10,4 @@
     <color name="top2">@color/colorAccent</color>
     <color name="top3">@color/colorPrimaryDark</color>
 
-    <color name="nlpPrimaryColor">#812ce5</color>
 </resources>

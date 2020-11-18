@@ -3,8 +3,7 @@ package org.pytorch.demo;
 import android.content.Intent;
 import android.os.Bundle;
 
-import org.pytorch.demo.nlp.NLPListActivity;
-import org.pytorch.demo.vision.VisionListActivity;
+import org.pytorch.demo.vision.ImageClassificationActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +13,15 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    findViewById(R.id.main_vision_click_view).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, VisionListActivity.class)));
-    findViewById(R.id.main_nlp_click_view).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, NLPListActivity.class)));
+    findViewById(R.id.main_vision_click_view).setOnClickListener(
+        v -> {
+          final Intent intent = new Intent(MainActivity.this, ImageClassificationActivity.class);
+          intent.putExtra(ImageClassificationActivity.INTENT_MODULE_ASSET_NAME,
+                  "mobilenet_v2.pt");
+          intent.putExtra(ImageClassificationActivity.INTENT_INFO_VIEW_TYPE,
+                  InfoViewFactory.INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_QMOBILENET);
+          startActivity(intent);
+        }
+    );
   }
 }
