@@ -35,7 +35,7 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
 
   private static final int INPUT_TENSOR_WIDTH = 224;
   private static final int INPUT_TENSOR_HEIGHT = 224;
-  private static final int TOP_K = 3;
+  private static final int TOP_K = 1;
   private static final int MOVING_AVG_PERIOD = 10;
   private static final String FORMAT_MS = "%dms";
   private static final String FORMAT_AVG_MS = "avg:%.0fms";
@@ -91,9 +91,9 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
     headerResultRowView.nameTextView.setText(R.string.image_classification_results_header_row_name);
     headerResultRowView.scoreTextView.setText(R.string.image_classification_results_header_row_score);
 
-    mResultRowViews[0] = findViewById(R.id.image_classification_top1_result_row);
-    mResultRowViews[1] = findViewById(R.id.image_classification_top2_result_row);
-    mResultRowViews[2] = findViewById(R.id.image_classification_top3_result_row);
+    mResultRowViews[0] = findViewById(R.id.image_classification_top3_result_row);
+    //mResultRowViews[1] = findViewById(R.id.image_classification_top2_result_row);
+    //mResultRowViews[2] = findViewById(R.id.image_classification_top3_result_row);
 
     mFpsText = findViewById(R.id.image_classification_fps_text);
     mMsText = findViewById(R.id.image_classification_ms_text);
@@ -163,6 +163,7 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
       if (mModule == null) {
         final String moduleFileAbsoluteFilePath = new File(
             Utils.assetFilePath(this, getModuleAssetName())).getAbsolutePath();
+        Log.d("filename",moduleFileAbsoluteFilePath);
         mModule = Module.load(moduleFileAbsoluteFilePath);
 
         mInputTensorBuffer =
