@@ -141,7 +141,7 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
     final String moduleAssetNameFromIntent = getIntent().getStringExtra(INTENT_MODULE_ASSET_NAME);
     mModuleAssetName = !TextUtils.isEmpty(moduleAssetNameFromIntent)
         ? moduleAssetNameFromIntent
-        : "resnet18.pt";
+        : "mobilenet_v2.pt";
 
     return mModuleAssetName;
   }
