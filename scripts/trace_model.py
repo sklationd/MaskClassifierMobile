@@ -2,7 +2,6 @@ import torch
 import torchvision
 
 model = torchvision.models.mobilenet_v2(num_classes=5)
-# model.classifier[1] = torch.nn.Linear(model.last_channel, 5)
 model.load_state_dict(torch.load("best.pt", map_location=torch.device('cpu')))
 model.eval()
 
