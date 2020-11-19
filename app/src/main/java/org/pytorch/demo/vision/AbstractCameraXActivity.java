@@ -70,7 +70,9 @@ public abstract class AbstractCameraXActivity<R> extends BaseModuleActivity {
 
   private void setupCameraX() {
     final TextureView textureView = getCameraPreviewTextureView();
-    final PreviewConfig previewConfig = new PreviewConfig.Builder().build();
+    final PreviewConfig previewConfig = new PreviewConfig.Builder()
+            .setLensFacing(CameraX.LensFacing.FRONT)
+            .build();
     final Preview preview = new Preview(previewConfig);
     preview.setOnPreviewOutputUpdateListener(output -> textureView.setSurfaceTexture(output.getSurfaceTexture()));
 
@@ -79,6 +81,7 @@ public abstract class AbstractCameraXActivity<R> extends BaseModuleActivity {
             .setTargetResolution(new Size(224, 224))
             .setCallbackHandler(mBackgroundHandler)
             .setImageReaderMode(ImageAnalysis.ImageReaderMode.ACQUIRE_LATEST_IMAGE)
+            .setLensFacing(CameraX.LensFacing.FRONT)
             .build();
     final ImageAnalysis imageAnalysis = new ImageAnalysis(imageAnalysisConfig);
     imageAnalysis.setAnalyzer(
