@@ -171,6 +171,8 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
       }
 
       final long startTime = SystemClock.elapsedRealtime();
+      Log.d("TEST", rotationDegrees+"");
+
       TensorImageUtils.imageYUV420CenterCropToFloatBuffer(
           image.getImage(), rotationDegrees,
           INPUT_TENSOR_WIDTH, INPUT_TENSOR_HEIGHT,
