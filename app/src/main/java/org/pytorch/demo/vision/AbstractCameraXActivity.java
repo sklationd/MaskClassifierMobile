@@ -75,6 +75,7 @@ public abstract class AbstractCameraXActivity<R> extends BaseModuleActivity {
             .build();
     final Preview preview = new Preview(previewConfig);
     preview.setOnPreviewOutputUpdateListener(output -> textureView.setSurfaceTexture(output.getSurfaceTexture()));
+    //여기서 카메라화면 설정됨
 
     final ImageAnalysisConfig imageAnalysisConfig =
         new ImageAnalysisConfig.Builder()
@@ -91,6 +92,8 @@ public abstract class AbstractCameraXActivity<R> extends BaseModuleActivity {
           }
 
           final R result = analyzeImage(image, rotationDegrees);
+          //여기서 ImageClassificationActivity로 Image넘김
+
           if (result != null) {
             mLastAnalysisResultTime = SystemClock.elapsedRealtime();
             runOnUiThread(() -> applyToUiAnalyzeImageResult(result));

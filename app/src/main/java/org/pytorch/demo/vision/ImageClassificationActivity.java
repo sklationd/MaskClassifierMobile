@@ -35,7 +35,7 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
 
   private static final int INPUT_TENSOR_WIDTH = 224;
   private static final int INPUT_TENSOR_HEIGHT = 224;
-  private static final int TOP_K = 3;
+  private static final int TOP_K = 1;
   private static final int MOVING_AVG_PERIOD = 10;
   private static final String FORMAT_MS = "%dms";
   private static final String FORMAT_AVG_MS = "avg:%.0fms";
@@ -90,10 +90,10 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
         findViewById(R.id.image_classification_result_header_row);
     headerResultRowView.nameTextView.setText(R.string.image_classification_results_header_row_name);
     headerResultRowView.scoreTextView.setText(R.string.image_classification_results_header_row_score);
+    //CustomView myView = new CustomView(this);
+    //setContentView(R.layout.activity_image_classification);
 
     mResultRowViews[0] = findViewById(R.id.image_classification_top1_result_row);
-    mResultRowViews[1] = findViewById(R.id.image_classification_top2_result_row);
-    mResultRowViews[2] = findViewById(R.id.image_classification_top3_result_row);
 
     mFpsText = findViewById(R.id.image_classification_fps_text);
     mMsText = findViewById(R.id.image_classification_ms_text);
@@ -172,6 +172,9 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
 
       final long startTime = SystemClock.elapsedRealtime();
       Log.d("TEST", rotationDegrees+"");
+      Log.v("ImagesizeH", String.valueOf(image.getHeight()));//240
+      Log.v("ImagesizeW", String.valueOf(image.getWidth()));//320
+
 
       TensorImageUtils.imageYUV420CenterCropToFloatBuffer(
           image.getImage(), rotationDegrees,
@@ -179,6 +182,7 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
           TensorImageUtils.TORCHVISION_NORM_MEAN_RGB,
           TensorImageUtils.TORCHVISION_NORM_STD_RGB,
           mInputTensorBuffer, 0);
+
 
       final long moduleForwardStartTime = SystemClock.elapsedRealtime();
       final Tensor outputTensor = mModule.forward(IValue.from(mInputTensor)).toTensor();
