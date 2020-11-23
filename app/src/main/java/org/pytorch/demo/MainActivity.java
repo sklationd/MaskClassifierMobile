@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         v -> {
           final Intent intent = new Intent(MainActivity.this, ImageClassificationActivity.class);
           intent.putExtra(ImageClassificationActivity.INTENT_MODULE_ASSET_NAME,
-                  "best_cpu.pt");
+                  "best_cpu_quantized.pt");
           intent.putExtra(ImageClassificationActivity.INTENT_INFO_VIEW_TYPE,
                   InfoViewFactory.INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_QMOBILENET);
           startActivity(intent);
