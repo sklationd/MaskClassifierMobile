@@ -3,6 +3,7 @@ package org.pytorch.demo;
 import android.content.Intent;
 import android.os.Bundle;
 
+import org.pytorch.demo.vision.DebugActivity;
 import org.pytorch.demo.vision.ImageClassificationActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,13 @@ public class MainActivity extends AppCompatActivity {
                   InfoViewFactory.INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_QMOBILENET);
           startActivity(intent);
         }
+    );
+
+    findViewById(R.id.debug_view).setOnClickListener(
+      v -> {
+          final Intent intent = new Intent(MainActivity.this, DebugActivity.class);
+          startActivity(intent);
+      }
     );
   }
 }

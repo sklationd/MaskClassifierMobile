@@ -25,6 +25,10 @@
             android:name=".vision.ImageClassificationActivity"
             android:label="@string/image_classification_title"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".vision.DebugActivity"
+            android:label="@string/image_classification_title"
+            android:screenOrientation="portrait"/>
 
     </application>
 

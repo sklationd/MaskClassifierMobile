@@ -1,5 +1,6 @@
 package org.pytorch.demo.vision;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.TextUtils;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.TextView;
 
+import org.pytorch.Device;
 import org.pytorch.IValue;
 import org.pytorch.Module;
 import org.pytorch.Tensor;
@@ -27,6 +29,7 @@ import java.util.Queue;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.camera.core.ImageProxy;
+import androidx.camera.view.PreviewView;
 
 public class ImageClassificationActivity extends AbstractCameraXActivity<ImageClassificationActivity.AnalysisResult> {
 
@@ -77,10 +80,8 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
   }
 
   @Override
-  protected TextureView getCameraPreviewTextureView() {
-    return ((ViewStub) findViewById(R.id.image_classification_texture_view_stub))
-        .inflate()
-        .findViewById(R.id.image_classification_texture_view);
+  protected PreviewView getCameraPreviewTextureView() {
+    return findViewById(R.id.image_classification_texture_view_stub);
   }
 
   @Override
@@ -90,8 +91,6 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
         findViewById(R.id.image_classification_result_header_row);
     headerResultRowView.nameTextView.setText(R.string.image_classification_results_header_row_name);
     headerResultRowView.scoreTextView.setText(R.string.image_classification_results_header_row_score);
-    //CustomView myView = new CustomView(this);
-    //setContentView(R.layout.activity_image_classification);
 
     mResultRowViews[0] = findViewById(R.id.image_classification_top1_result_row);
 
@@ -151,6 +150,7 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
     return getModuleAssetName();
   }
 
+  @SuppressLint("UnsafeExperimentalUsageError")
   @Override
   @WorkerThread
   @Nullable
@@ -177,7 +177,7 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
 
 
       TensorImageUtils.imageYUV420CenterCropToFloatBuffer(
-          image.getImage(), rotationDegrees,
+          image.getImage(), 0,
           INPUT_TENSOR_WIDTH, INPUT_TENSOR_HEIGHT,
           TensorImageUtils.TORCHVISION_NORM_MEAN_RGB,
           TensorImageUtils.TORCHVISION_NORM_STD_RGB,
